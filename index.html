@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>gam3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <canvas id="canvas1"></canvas>
+    <div class="scanlines"></div>
+    <button id="resetBtn" onclick="resetGame()">New Game</button>
+
+    <div class="displayScore">
+        <div class="noise"></div>
+        <!-- <div class="noise noise-moving"></div> -->
+        <div class="play"></div>
+    </div>
 
     <script src="bird.js"></script>
     <script src="particles.js"></script>
     <script src="obstacles.js"></script>
     <script src="main.js"></script>
+
 </body>
 </html>
