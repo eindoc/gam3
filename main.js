@@ -1,5 +1,6 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
+const resetBtn = document.getElementById('resetBtn');
 canvas.width = 600;
 canvas.height = 400;
 
@@ -10,6 +11,14 @@ let frame = 0;
 let score = 0;
 let gameSpeed = 3;
 let isGameOver = true;
+
+function hideResetBtn() {
+    resetBtn.style.display = 'none';
+}
+
+function showResetBtn() {
+    resetBtn.style.display = 'block';
+}
 
 // const gradient = ctx.createLinearGradient(0, 0, 0, 70);
 // gradient.addColorStop('0.4', '#fff');
@@ -29,15 +38,17 @@ function resetGame() {
     bird = new Bird();
     obstaclesArray.length = 0;
     particlesArray.length = 0;
-    document.getElementById('resetBtn').disabled = true;
+    // document.getElementById('resetBtn').disabled = true;
     animate();
 }
 
 function animate() {
-    if (isGameOver) return;
-    
+    if (isGameOver) {
+        return;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // ctx.fillRect(10, canvas.height - 90, 50, 50);
+    hideResetBtn();
     handleObstacles();
     handleParticles();
     bird.update();
@@ -65,6 +76,11 @@ window.addEventListener('keydown', function(e){
 window.addEventListener('keyup', function(e){
     if (e.code === 'Space') spacePressed = false;
 });
+window.addEventListener('keyup', function(e) {
+    if (isGameOver && e.code === 'Enter') {
+        resetBtn.click();
+    };
+})
 
 // collision/death popup
 const bang = new Image();
@@ -81,8 +97,8 @@ function handleCollisions() {
                  ctx.drawImage(bang, bird.x - 20, bird.y - 20, 50, 50);
                  ctx.font = "25px Courier New";
                  ctx.fillStyle = 'black';
-                 ctx.fillText('no maidens? [click Reset Game]', 150, canvas.height / 2);
-                 document.getElementById('resetBtn').disabled = false;
+                 ctx.fillText('no maidens?', 10, canvas.height / 2);
+                showResetBtn();
 
                  return true;
             }
