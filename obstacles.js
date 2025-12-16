@@ -4,23 +4,19 @@ let barHeight = 3;
 
 class Obstacle {
     constructor() {
-        this.top = (Math.random() * canvas.height / barHeight) + 20;
-        this.bottom = (Math.random() * canvas.height / barHeight) + 20;
-        this.x = canvas.clientWidth;
-        this.width = (Math.random() * canvas.width / 3);
+        this.top = (Math.random() * canvas1.height / barHeight) + 20;
+        this.bottom = (Math.random() * canvas1.height / barHeight) + 20;
+        this.x = canvas1.clientWidth;
+        this.width = (Math.random() * canvas1.width / 3);
         this.color = 'hsla(' + hue + ', 100%, 50%, 1)';
         this.counted = false;
-        // barHeight = barHeight - 0.1;
         barHeight = Math.min(3, Math.max(8));
     }
     
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, 0, this.width, this.top);
-        ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
-
-        // ctx.fillRect(100, 200, 100, 520);
-        
+        ctx.fillRect(this.x, canvas1.height - this.bottom, this.width, this.bottom);        
     }
 
     update() {

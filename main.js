@@ -1,6 +1,8 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const resetBtn = document.getElementById('resetBtn');
+const backgroundImage = document.getElementById('background.png');
+
 canvas.width = 600;
 canvas.height = 400;
 
@@ -11,6 +13,7 @@ let frame = 0;
 let score = 0;
 let gameSpeed = 3;
 let isGameOver = true;
+let backgroundX = 0;
 
 function hideResetBtn() {
     resetBtn.style.display = 'none';
@@ -19,13 +22,6 @@ function hideResetBtn() {
 function showResetBtn() {
     resetBtn.style.display = 'block';
 }
-
-// const gradient = ctx.createLinearGradient(0, 0, 0, 70);
-// gradient.addColorStop('0.4', '#fff');
-// gradient.addColorStop('0.5', '#000');
-// gradient.addColorStop('0.55', '#88c766ff');
-// gradient.addColorStop('0.6', '#000');
-// gradient.addColorStop('0.9', '#fff');
 
 function resetGame() {
     score = 0;
@@ -38,7 +34,6 @@ function resetGame() {
     bird = new Bird();
     obstaclesArray.length = 0;
     particlesArray.length = 0;
-    // document.getElementById('resetBtn').disabled = true;
     animate();
 }
 
@@ -47,7 +42,6 @@ function animate() {
         return;
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // ctx.fillRect(10, canvas.height - 90, 50, 50);
     hideResetBtn();
     handleObstacles();
     handleParticles();
@@ -64,9 +58,9 @@ function animate() {
         return;
     }
     requestAnimationFrame(animate);
-    // angle += 0.14;
     hue += 4;
     frame++;
+    backgroundX -= gameSpeed;
 }
 animate();
 
